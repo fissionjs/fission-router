@@ -1,25 +1,38 @@
-var noop = require('node-noop').noop;
+'use strict';
+
+var React = require('react');
+
+var emptyReactComponent = React.createClass({
+  displayName: 'DummyComponent',
+  render: function(){
+    return React.DOM.div(null, 'Test');
+  }
+});
 
 module.exports = {
+  splash: {
+    path: '/',
+    handler: emptyReactComponent
+  },
   login: {
     path: 'login',
-    handler: noop
+    handler: emptyReactComponent
   },
   home: {
     path: 'home',
-    handler: noop,
+    handler: emptyReactComponent,
     children: {
       dashboard: {
         default: true,
-        handler: noop
+        handler: emptyReactComponent
       },
       stats: {
         path: 'analytics',
-        handler: noop
+        handler: emptyReactComponent
       },
       job: {
         path: 'job/:jobId',
-        handler: noop
+        handler: emptyReactComponent
       }
     }
   }

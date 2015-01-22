@@ -11,22 +11,29 @@ TODO: loader?
 TODO: detect model and collection views or views with async load
 */
 function renderRoute(renderTarget, Component, state){
-  console.log(state);
-  return React.render(Component(), renderTarget);
+  var toRender = React.createElement(Component, state.params);
+  return React.render(toRender, renderTarget);
 }
 
 module.exports = function(cfg){
   var routes = transformRoutes(cfg);
 
   // TODO: ability to configure this
-  var router = Router.create({
+  var _router = Router.create({
     routes: routes,
     location: Router.HistoryLocation
   });
 
-  router.start = function(renderTarget) {
-    renderTarget = (renderTarget || document.body);
-    return Router.run(renderRoute.bind(null, renderTarget));
+  var router = {
+    _router: _router,
+    routes: routes,
+    start: function(renderTarget) {
+      renderTarget = (renderTarget || document.body);
+      _router.run(renderRoute.bind(null, renderTarget));
+      return router;
+    },
+    stop: _router.stop,
+    transitionTo: _router.transitionTo
   };
 
   return router;
