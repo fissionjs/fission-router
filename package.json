@@ -19,7 +19,6 @@
     "mochify": "^2.1.1",
     "mochify-istanbul": "^2.1.1",
     "node-noop": "0.0.1",
-    "rimraf": "^2.2.8",
     "should": "^4.4.2"
   },
   "main": "./index.js",
