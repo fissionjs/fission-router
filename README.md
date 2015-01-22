@@ -87,8 +87,8 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[gittip-url]: https://www.gittip.com/fissionjs/
-[gittip-image]: http://img.shields.io/gittip/fissionjs.svg
+[gittip-url]: https://www.gittip.com/wearefractal/
+[gittip-image]: http://img.shields.io/gittip/wearefractal.svg
 
 [downloads-image]: http://img.shields.io/npm/dm/fission-router.svg
 [npm-url]: https://npmjs.org/package/fission-router
