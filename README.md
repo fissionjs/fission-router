@@ -31,26 +31,32 @@ npm install fission-router --save
 var Router = require('fission-router');
 
 var appRouter = Router({
+  // Route = /
   splash: {
     path: '/',
     handler: SomeReactComponent
   },
+  // Route = /login
   login: {
     path: 'login',
     handler: SomeReactComponent
   },
+  // Route = /home
   home: {
     path: 'home',
     handler: SomeReactComponent,
     children: {
+      // Route = /home, this is a subview of home
       dashboard: {
         default: true,
         handler: SomeReactComponent
       },
+      // Route = /home/statistics, this is a subview of home
       stats: {
         path: 'statistics',
         handler: SomeReactComponent
       },
+      // Route = /home/job/123, this is a subview of home
       job: {
         path: 'job/:jobId',
         handler: SomeReactComponent
