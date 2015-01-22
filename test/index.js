@@ -21,6 +21,16 @@ afterEach(function(){
 });
 
 describe('Router()', function() {
+  it('should expose the right attributes', function(done){
+    should.exist(router);
+    should.exist(router.ChildView, 'childview');
+    should.exist(router.Link, 'link');
+    should.exist(router.mixins, 'mixins');
+    should.exist(router.mixins.Navigation, 'navigation mixin');
+    should.exist(router.mixins.State, 'state mixin');
+    done();
+  });
+
   it('should construct a router from a route object', function(done) {
     this.router = router(this.routes);
     should.exist(this.router, 'return value');
@@ -59,10 +69,9 @@ describe('Router.start()', function() {
 
     var firstContainerNode = this.container.childNodes[0];
     var firstTextNode = firstContainerNode.childNodes[0];
-    var secondContainerNode = this.container.childNodes[0].childNodes[1];
+    var secondContainerNode = firstContainerNode.childNodes[1];
     var secondTextNode = secondContainerNode.childNodes[0];
 
-    this.container.childNodes.length.should.equal(1);
     firstContainerNode.tagName.should.equal('DIV');
     firstTextNode.tagName.should.equal('SPAN');
     firstTextNode.textContent.should.equal('Test');
