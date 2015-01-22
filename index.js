@@ -1,5 +1,3 @@
-/*globals document*/
-
 'use strict';
 
 var Router = require('react-router');
@@ -28,16 +26,20 @@ module.exports = function(cfg){
     _router: _router,
     routes: routes,
     start: function(renderTarget) {
-      renderTarget = (renderTarget || document.body);
       _router.run(renderRoute.bind(null, renderTarget));
       return router;
     },
     stop: _router.stop,
-    transitionTo: _router.transitionTo
+    transitionTo: _router.transitionTo,
+    replaceWith: _router.replaceWith
   };
 
   return router;
 };
 
 module.exports.Link = Router.Link;
-module.exports.ChildRoute = Router.RouteHandler;
+module.exports.ChildView = Router.RouteHandler;
+module.exports.mixins = {
+  State: Router.State,
+  Navigation: Router.Navigation
+};
