@@ -22,6 +22,7 @@ module.exports = function(cfg){
     location: Router.HistoryLocation
   });
 
+  // TODO: make sure every fn is chainable
   var router = {
     _router: _router,
     routes: routes,
