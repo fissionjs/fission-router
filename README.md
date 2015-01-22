@@ -28,7 +28,38 @@ npm install fission-router --save
 ## Example
 
 ```js
-EXAMPLEHERE
+var Router = require('fission-router');
+
+var appRouter = Router({
+  splash: {
+    path: '/',
+    handler: SomeReactComponent
+  },
+  login: {
+    path: 'login',
+    handler: SomeReactComponent
+  },
+  home: {
+    path: 'home',
+    handler: SomeReactComponent,
+    children: {
+      dashboard: {
+        default: true,
+        handler: SomeReactComponent
+      },
+      stats: {
+        path: 'statistics',
+        handler: SomeReactComponent
+      },
+      job: {
+        path: 'job/:jobId',
+        handler: SomeReactComponent
+      }
+    }
+  }
+});
+
+appRouter.start(document.body);
 ```
 
 ## LICENSE
