@@ -40,3 +40,4 @@ module.exports = function(cfg){
 };
 
 module.exports.Link = Router.Link;
+module.exports.ChildRoute = Router.RouteHandler;
