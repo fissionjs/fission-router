@@ -115,10 +115,10 @@ children: {
 ##### Possible options
 
 - location
-  - A [Router Location Implementation](#Router Locations)
+  - A [Router Location Implementation](#router-locations)
   - Defaults to `Router.locations.History`
   - Can also be a string for testing
-- Anything else [react-router.create](/rackt/react-router/blob/master/docs/api/create.md) takes
+- Anything else [react-router.create](https://github.com/rackt/react-router/blob/master/docs/api/create.md) takes
 
 
 ### Router#start(renderNode)
@@ -149,35 +149,35 @@ router.stop();
 
 If you have a child route that is active, this is a component that represents that.
 
-Pointer to [react-router.RouteHandler](/rackt/react-router/blob/master/docs/api/components/RouteHandler.md)
+Pointer to [react-router.RouteHandler](https://github.com/rackt/react-router/blob/master/docs/api/components/RouteHandler.md)
 
 ### Router Locations
 
-These are all [location implementations from react-router](/rackt/react-router/blob/master/docs/api/misc/Location.md)
+These are all [location implementations from react-router](https://github.com/rackt/react-router/blob/master/docs/api/misc/Location.md)
 
 #### Router.locations.History
 
-Uses HTML5 History API to provide location information. Pointer to [react-router.HistoryLocation](/rackt/react-router/blob/master/locations/HistoryLocation.js).
+Uses HTML5 History API to provide location information. Pointer to [react-router.HistoryLocation](https://github.com/rackt/react-router/blob/master/locations/HistoryLocation.js).
 
 #### Router.locations.Hash
 
-Uses URL Hashbangs to provide location information. Pointer to [react-router.HashLocation](/rackt/react-router/blob/master/locations/HashLocation.js).
+Uses URL Hashbangs to provide location information. Pointer to [react-router.HashLocation](https://github.com/rackt/react-router/blob/master/locations/HashLocation.js).
 
 #### Router.locations.Refresh
 
-Uses full page refreshes. This is a fallback for when you don't want to use hashbangs (ugly) but you can't use the History implementation (browser support), you can use this. Pointer to [react-router.RefreshLocation](/rackt/react-router/blob/master/locations/RefreshLocation.js).
+Uses full page refreshes. This is a fallback for when you don't want to use hashbangs (ugly) but you can't use the History implementation (browser support), you can use this. Pointer to [react-router.RefreshLocation](https://github.com/rackt/react-router/blob/master/locations/RefreshLocation.js).
 
 ### View Mixins
 
 #### Router.mixins.State
 
-Pointer to [react-router.State](rackt/react-router/blob/master/docs/api/mixins/State.md).
+Pointer to [react-router.State](https://github.com/rackt/react-router/blob/master/docs/api/mixins/State.md).
 
 Provides some utilities for getting the current state of the router from the view it is mixed into.
 
 #### Router.mixins.Navigation
 
-Pointer to [react-router.Navigation](rackt/react-router/blob/master/docs/api/mixins/Navigation.md).
+Pointer to [react-router.Navigation](https://github.com/rackt/react-router/blob/master/docs/api/mixins/Navigation.md).
 
 Provides some utilities for linking to, triggering, and sending data to other routes to the view it is mixed into.
 
