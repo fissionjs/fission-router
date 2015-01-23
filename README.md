@@ -46,7 +46,7 @@ var appRouter = Router({
     path: 'home',
     view: SomeReactComponent,
     children: {
-      // Route = /home, this is a subview of home
+      // Route = /home, this is a default subview of home with no path specified
       dashboard: {
         default: true,
         view: SomeReactComponent
