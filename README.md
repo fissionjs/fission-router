@@ -34,12 +34,12 @@ var appRouter = Router({
   // Route = /
   splash: {
     path: '/',
-    handler: SomeReactComponent
+    view: SomeReactComponent
   },
   // Route = /login
   login: {
     path: 'login',
-    handler: SomeReactComponent
+    view: SomeReactComponent
   },
   // Route = /home
   home: {
@@ -149,7 +149,7 @@ router.stop();
 
 If you have a child route that is active, this is a component that represents that.
 
-Pointer to [react-router.RouteHandler](https://github.com/rackt/react-router/blob/master/docs/api/components/RouteHandler.md)
+Pointer to [react-router.Routeview](https://github.com/rackt/react-router/blob/master/docs/api/components/Routeview.md)
 
 ### Router Locations
 
