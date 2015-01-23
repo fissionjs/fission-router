@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>fission-router by fissionjs</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>fission-router</h1>
+        <p>A declarative layer on top of react-router with some other nice-to-haves</p>
+
+        <p class="view"><a href="https://github.com/fissionjs/fission-router">View the Project on GitHub <small>fissionjs/fission-router</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fissionjs/fission-router/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fissionjs/fission-router/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fissionjs/fission-router">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="fission-router" class="anchor" href="#fission-router" aria-hidden="true"><span class="octicon octicon-link"></span></a>fission-router</h1>
+
+<h2>
+<a id="information" class="anchor" href="#information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information</h2>
+
+<table>
+<tr>
+<td>Node Version</td>
+<td>&gt;= 0.10</td>
+</tr>
+</table>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<pre><code>npm install fission-router --save
+</code></pre>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Router <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>fission-router<span class="pl-pds">'</span></span>);
+
+<span class="pl-s">var</span> appRouter <span class="pl-k">=</span> Router({
+  <span class="pl-c">// Route = /</span>
+  splash<span class="pl-k">:</span> {
+    path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>,
+    view<span class="pl-k">:</span> SomeReactComponent
+  },
+  <span class="pl-c">// Route = /login</span>
+  login<span class="pl-k">:</span> {
+    path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>login<span class="pl-pds">'</span></span>,
+    view<span class="pl-k">:</span> SomeReactComponent
+  },
+  <span class="pl-c">// Route = /home</span>
+  home<span class="pl-k">:</span> {
+    path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>,
+    view<span class="pl-k">:</span> SomeReactComponent,
+    children<span class="pl-k">:</span> {
+      <span class="pl-c">// Route = /home, this is a subview of home</span>
+      dashboard<span class="pl-k">:</span> {
+        <span class="pl-k">default</span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        view<span class="pl-k">:</span> SomeReactComponent
+      },
+      <span class="pl-c">// Route = /home/statistics, this is a subview of home</span>
+      stats<span class="pl-k">:</span> {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>statistics<span class="pl-pds">'</span></span>,
+        view<span class="pl-k">:</span> SomeReactComponent
+      },
+      <span class="pl-c">// Route = /home/job/123, this is a subview of home</span>
+      job<span class="pl-k">:</span> {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>job/:jobId<span class="pl-pds">'</span></span>,
+        view<span class="pl-k">:</span> SomeReactComponent
+      }
+    }
+  }
+});
+
+appRouter.<span class="pl-sc">start</span>(<span class="pl-s3">document</span>.<span class="pl-sc">body</span>);</pre></div>
+
+<h2>
+<a id="differences" class="anchor" href="#differences" aria-hidden="true"><span class="octicon octicon-link"></span></a>Differences</h2>
+
+<p>react-router is great but I don't like JSX and wanted a simpler API. This module provides a small wrapper that gives you the ability to provide an object with your route info instead of using JSX, renames a few things, and moves some stuff around.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>You should read the react-router documentation to get a full understanding of how this all works. This documentation is a very basic API overview of stuff that was changed.</p>
+
+<h3>
+<a id="routerconfig-options" class="anchor" href="#routerconfig-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router(config[, options])</h3>
+
+<p>This returns a react router object, but with no <code>.run</code>. You can expect the same methods (transitionTo, replaceWith, etc.) that exist in react-router to exist on this object too.</p>
+
+<h4>
+<a id="config-format" class="anchor" href="#config-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config format</h4>
+
+<p>The key of this object should be a unique name to describe the route.</p>
+
+<ul>
+<li>path
+
+<ul>
+<li>Optional string describing the path needed to activate the route</li>
+<li>Path is relative to the parent path</li>
+</ul>
+</li>
+<li>view
+
+<ul>
+<li>Required component function that you want rendered when the route is activated</li>
+</ul>
+</li>
+<li>default
+
+<ul>
+<li>If this is the default view or not. Useful when you have a set of children, where one is activated by default. If unspecified this value will be false.</li>
+</ul>
+</li>
+<li>children
+
+<ul>
+<li>optional object of child routes</li>
+</ul>
+</li>
+</ul>
+
+<p>If a route has no options that need to be specified then you can also just give the function like so:</p>
+
+<div class="highlight highlight-js"><pre>children<span class="pl-k">:</span> {
+  home<span class="pl-k">:</span> HomeView
+}</pre></div>
+
+<p>which is just sugar for</p>
+
+<div class="highlight highlight-js"><pre>children<span class="pl-k">:</span> {
+  home<span class="pl-k">:</span> {
+    view<span class="pl-k">:</span> HomeView
+  }
+}</pre></div>
+
+<h5>
+<a id="possible-options" class="anchor" href="#possible-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Possible options</h5>
+
+<ul>
+<li>location
+
+<ul>
+<li>A <a href="#router-locations">Router Location Implementation</a>
+</li>
+<li>Defaults to <code>Router.locations.History</code>
+</li>
+<li>Can also be a string for testing</li>
+</ul>
+</li>
+<li>Anything else <a href="https://github.com/rackt/react-router/blob/master/docs/api/create.md">react-router.create</a> takes</li>
+</ul>
+
+<h3>
+<a id="routerstartrendernode" class="anchor" href="#routerstartrendernode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router#start(renderNode)</h3>
+
+<p>Starts listening to changes and renders active view to the given renderNode. renderNode must be a valid HTML element.</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> router <span class="pl-k">=</span> Router({
+  <span class="pl-c">// ... some route config</span>
+});
+router.<span class="pl-sc">start</span>(<span class="pl-s3">document</span>.<span class="pl-sc">body</span>);</pre></div>
+
+<h3>
+<a id="routerstop" class="anchor" href="#routerstop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router#stop()</h3>
+
+<p>Stops listening for changes from the location implementation.</p>
+
+<p>This will start, render, then stop the router.</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> router <span class="pl-k">=</span> Router({
+  <span class="pl-c">// ... some route config</span>
+});
+router.<span class="pl-sc">start</span>(<span class="pl-s3">document</span>.<span class="pl-sc">body</span>);
+router.<span class="pl-s3">stop</span>();</pre></div>
+
+<h3>
+<a id="routerchildview" class="anchor" href="#routerchildview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.ChildView</h3>
+
+<p>If you have a child route that is active, this is a component that represents that.</p>
+
+<p>Pointer to <a href="https://github.com/rackt/react-router/blob/master/docs/api/components/Routeview.md">react-router.Routeview</a></p>
+
+<h3>
+<a id="router-locations" class="anchor" href="#router-locations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router Locations</h3>
+
+<p>These are all <a href="https://github.com/rackt/react-router/blob/master/docs/api/misc/Location.md">location implementations from react-router</a></p>
+
+<h4>
+<a id="routerlocationshistory" class="anchor" href="#routerlocationshistory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.locations.History</h4>
+
+<p>Uses HTML5 History API to provide location information. Pointer to <a href="https://github.com/rackt/react-router/blob/master/locations/HistoryLocation.js">react-router.HistoryLocation</a>.</p>
+
+<h4>
+<a id="routerlocationshash" class="anchor" href="#routerlocationshash" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.locations.Hash</h4>
+
+<p>Uses URL Hashbangs to provide location information. Pointer to <a href="https://github.com/rackt/react-router/blob/master/locations/HashLocation.js">react-router.HashLocation</a>.</p>
+
+<h4>
+<a id="routerlocationsrefresh" class="anchor" href="#routerlocationsrefresh" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.locations.Refresh</h4>
+
+<p>Uses full page refreshes. This is a fallback for when you don't want to use hashbangs (ugly) but you can't use the History implementation (browser support), you can use this. Pointer to <a href="https://github.com/rackt/react-router/blob/master/locations/RefreshLocation.js">react-router.RefreshLocation</a>.</p>
+
+<h3>
+<a id="view-mixins" class="anchor" href="#view-mixins" aria-hidden="true"><span class="octicon octicon-link"></span></a>View Mixins</h3>
+
+<h4>
+<a id="routermixinsstate" class="anchor" href="#routermixinsstate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.mixins.State</h4>
+
+<p>Pointer to <a href="https://github.com/rackt/react-router/blob/master/docs/api/mixins/State.md">react-router.State</a>.</p>
+
+<p>Provides some utilities for getting the current state of the router from the view it is mixed into.</p>
+
+<h4>
+<a id="routermixinsnavigation" class="anchor" href="#routermixinsnavigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Router.mixins.Navigation</h4>
+
+<p>Pointer to <a href="https://github.com/rackt/react-router/blob/master/docs/api/mixins/Navigation.md">react-router.Navigation</a>.</p>
+
+<p>Provides some utilities for linking to, triggering, and sending data to other routes to the view it is mixed into.</p>
+
+<h3>
+<a id="server-side-rendering" class="anchor" href="#server-side-rendering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Server-side rendering</h3>
+
+<p>Is supported. Docs coming soon.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+
+<p>(MIT License)</p>
+
+<p>Copyright (c) 2015 Fractal <a href="mailto:contact@wearefractal.com">contact@wearefractal.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fissionjs">fissionjs</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
