@@ -30,10 +30,7 @@ module.exports = {
     path: 'login',
     view: emptyReactComponent('login')
   },
-  logout: {
-    path: '/login',
-    view: emptyReactComponent('logout')
-  },
+  logout: emptyReactComponent('logout'),
   home: {
     path: 'home',
     view: emptyReactComponent('home'),
