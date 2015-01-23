@@ -63,7 +63,7 @@ describe('Router.start()', function() {
   });
 
   it('should render a route from options object', function(done) {
-    router.locations.History.history = ['/'];
+    router.locations.History.history = ['/login'];
     this.router = router(this.routes, {location: router.locations.History});
     this.router.start(this.container);
 
