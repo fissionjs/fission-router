@@ -28,6 +28,10 @@ describe('Router()', function() {
     should.exist(router.mixins, 'mixins');
     should.exist(router.mixins.Navigation, 'navigation mixin');
     should.exist(router.mixins.State, 'state mixin');
+    should.exist(router.locations, 'locations');
+    should.exist(router.locations.History, 'history location');
+    should.exist(router.locations.Hash, 'hash location');
+    should.exist(router.locations.Refresh, 'refresh location');
     done();
   });
 
@@ -38,27 +42,38 @@ describe('Router()', function() {
     should.exist(this.router.stop, 'stop fn');
     should.exist(this.router.transitionTo, 'transitionTo fn');
     should.exist(this.router.replaceWith, 'replaceWith fn');
-    should.exist(this.router._router, 'hidden var');
-    should.exist(this.router.routes, 'computed routes');
     done();
   });
 });
 
 describe('Router.start()', function() {
-  it('should return the router for chaining', function(done) {
-    this.router = router(this.routes);
-    this.router.start(this.container).should.equal(this.router);
-    done();
-  });
-
   it('should render a route', function(done) {
     this.router = router(this.routes);
     this.router.replaceWith('/');
     this.router.start(this.container);
 
-    this.container.childNodes.length.should.equal(1);
-    this.container.childNodes[0].tagName.should.equal('DIV');
-    this.container.childNodes[0].textContent.should.equal('Test');
+    var firstContainerNode = this.container.childNodes[0];
+    var firstTextNode = firstContainerNode.childNodes[0];
+
+    firstContainerNode.tagName.should.equal('DIV');
+    firstTextNode.tagName.should.equal('SPAN');
+    firstTextNode.textContent.should.equal('Test');
+
+    done();
+  });
+
+  it('should render a route from options object', function(done) {
+    router.locations.History.history = ['/'];
+    this.router = router(this.routes, {location: router.locations.History});
+    this.router.start(this.container);
+
+    var firstContainerNode = this.container.childNodes[0];
+    var firstTextNode = firstContainerNode.childNodes[0];
+
+    firstContainerNode.tagName.should.equal('DIV');
+    firstTextNode.tagName.should.equal('SPAN');
+    firstTextNode.textContent.should.equal('Test');
+
     done();
   });
 

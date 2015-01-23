@@ -1,38 +1,27 @@
 'use strict';
 
 var Router = require('react-router');
-var React = require('react');
 var transformRoutes = require('./lib/transformRoutes');
+var renderRoute = require('./lib/renderRoute');
+var defaults = require('lodash.defaults');
 
-/*
-TODO: loader?
-TODO: detect model and collection views or views with async load
-*/
-function renderRoute(renderTarget, Component, state){
-  var toRender = React.createElement(Component, state.params);
-  return React.render(toRender, renderTarget);
-}
-
-module.exports = function(cfg){
-  var routes = transformRoutes(cfg);
-
-  // TODO: ability to configure this
-  var _router = Router.create({
-    routes: routes,
+module.exports = function(routeObj, opt){
+  var options = defaults({}, (opt || {}), {
     location: Router.HistoryLocation
   });
+  var routes = transformRoutes(routeObj);
 
-  // TODO: make sure every fn is chainable
-  var router = {
-    _router: _router,
+  var router = Router.create({
     routes: routes,
-    start: function(renderTarget) {
-      _router.run(renderRoute.bind(null, renderTarget));
-      return router;
-    },
-    stop: _router.stop,
-    transitionTo: _router.transitionTo,
-    replaceWith: _router.replaceWith
+    location: options.location
+  });
+
+  // dont confuse people with a start and run, only expose start
+  var originalRun = router.run;
+  delete router.run;
+
+  router.start = function(renderTarget) {
+    return originalRun(renderRoute.bind(null, renderTarget));
   };
 
   return router;
@@ -43,4 +32,9 @@ module.exports.ChildView = Router.RouteHandler;
 module.exports.mixins = {
   State: Router.State,
   Navigation: Router.Navigation
+};
+module.exports.locations = {
+  History: Router.HistoryLocation,
+  Hash: Router.HashLocation,
+  Refresh: Router.RefreshLocation
 };

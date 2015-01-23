@@ -66,6 +66,8 @@ var appRouter = Router({
 });
 
 appRouter.start(document.body);
+
+// more docs coming soon
 ```
 
 ## LICENSE

@@ -7,6 +7,7 @@
   "author": "Fractal contact@wearefractal.com (http://wearefractal.com)",
   "dependencies": {
     "lodash.clone": "^2.4.1",
+    "lodash.defaults": "^2.4.1",
     "react-router": "rackt/react-router"
   },
   "peerDependencies": {
