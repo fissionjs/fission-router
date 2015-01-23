@@ -24,27 +24,27 @@ var emptyReactComponent = function(name){
 module.exports = {
   splash: {
     path: '/',
-    handler: emptyReactComponent('splash')
+    view: emptyReactComponent('splash')
   },
   login: {
     path: 'login',
-    handler: emptyReactComponent('login')
+    view: emptyReactComponent('login')
   },
   home: {
     path: 'home',
-    handler: emptyReactComponent('home'),
+    view: emptyReactComponent('home'),
     children: {
       dashboard: {
         default: true,
-        handler: emptyReactComponent('dashboard')
+        view: emptyReactComponent('dashboard')
       },
       stats: {
         path: 'analytics',
-        handler: emptyReactComponent('stats')
+        view: emptyReactComponent('stats')
       },
       job: {
         path: 'job/:jobId',
-        handler: emptyReactComponent('job')
+        view: emptyReactComponent('job')
       }
     }
   }

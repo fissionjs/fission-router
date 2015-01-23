@@ -44,6 +44,24 @@ describe('Router()', function() {
     should.exist(this.router.replaceWith, 'replaceWith fn');
     done();
   });
+
+  it('should throw on invalid route param', function(done) {
+    try {
+      this.router = router('lol');
+    } catch (err) {
+      should.exist(err);
+      done();
+    }
+  });
+
+  it('should throw on invalid route object', function(done) {
+    try {
+      this.router = router({test: 'lol'});
+    } catch (err) {
+      should.exist(err);
+      done();
+    }
+  });
 });
 
 describe('Router.start()', function() {
