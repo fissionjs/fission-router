@@ -18,7 +18,7 @@
     "istanbul-coveralls": "^1.0.1",
     "jshint": "^2.5.11",
     "jshint-stylish": "^1.0.0",
-    "mochify": "^2.1.1",
+    "mochify": "^2.2.0",
     "mochify-istanbul": "^2.1.1",
     "should": "^4.4.2"
   },
