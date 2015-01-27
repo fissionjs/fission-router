@@ -1,14 +1,14 @@
 'use strict';
 
 var Router = require('react-router');
+var assign = require('object-assign');
 var transformRoutes = require('./lib/transformRoutes');
 var renderRoute = require('./lib/renderRoute');
-var defaults = require('lodash.defaults');
 
 module.exports = function(routeObj, opt){
-  var options = defaults({}, (opt || {}), {
+  var options = assign({
     location: Router.HistoryLocation
-  });
+  }, opt);
   var routes = transformRoutes(routeObj);
 
   var router = Router.create({
