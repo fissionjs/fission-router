@@ -9,10 +9,9 @@ module.exports = function(routeObj, opt){
   var options = assign({
     location: Router.HistoryLocation
   }, opt);
-  var routes = transformRoutes(routeObj);
 
   var router = Router.create({
-    routes: routes,
+    routes: transformRoutes(routeObj),
     location: options.location
   });
 
