@@ -145,11 +145,17 @@ router.start(document.body);
 router.stop();
 ```
 
+### Router.Link
+
+This is wrapped in a createFactory for your sanity.
+
+Pointer to [react-router.Link](https://github.com/rackt/react-router/blob/master/docs/api/components/Link.md)
+
 ### Router.ChildView
 
-If you have a child route that is active, this is a component that represents that.
+If you have a child route that is active, this is a component that represents that. This is wrapped in a createFactory for your sanity.
 
-Pointer to [react-router.Routeview](https://github.com/rackt/react-router/blob/master/docs/api/components/Routeview.md)
+Pointer to [react-router.RouteHandler](https://github.com/rackt/react-router/blob/master/docs/api/components/RouteHandler.md)
 
 ### Router Locations
 

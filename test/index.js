@@ -115,25 +115,4 @@ describe('Router.start()', function() {
 
     done();
   });
-
-  it.skip('should render a nested route with params', function(done) {
-    this.router = router(this.routes);
-    this.router.replaceWith('/home/job/123');
-    this.router.start(this.container);
-
-    var firstContainerNode = this.container.childNodes[0];
-    var firstTextNode = firstContainerNode.childNodes[0];
-    var secondContainerNode = firstContainerNode.childNodes[1];
-    var secondTextNode = secondContainerNode.childNodes[0];
-
-    firstContainerNode.tagName.should.equal('DIV');
-    firstTextNode.tagName.should.equal('SPAN');
-    firstTextNode.textContent.should.equal('Test');
-
-    secondContainerNode.tagName.should.equal('DIV');
-    secondTextNode.tagName.should.equal('SPAN');
-    secondTextNode.textContent.should.equal('Test123');
-
-    done();
-  });
 });

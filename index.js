@@ -1,5 +1,6 @@
 'use strict';
 
+var React = require('react');
 var Router = require('react-router');
 var assign = require('object-assign');
 var transformRoutes = require('./lib/transformRoutes');
@@ -7,12 +8,14 @@ var renderRoute = require('./lib/renderRoute');
 
 module.exports = function(routeObj, opt){
   var options = assign({
-    location: Router.HistoryLocation
+    location: Router.HistoryLocation,
+    expectFactory: true
   }, opt);
 
   var router = Router.create({
     routes: transformRoutes(routeObj),
-    location: options.location
+    location: options.location,
+    expectFactory: options.expectFactory
   });
 
   // dont confuse people with a start and run, only expose start
@@ -26,8 +29,8 @@ module.exports = function(routeObj, opt){
   return router;
 };
 
-module.exports.Link = Router.Link;
-module.exports.ChildView = Router.RouteHandler;
+module.exports.Link = React.createFactory(Router.Link);
+module.exports.ChildView = React.createFactory(Router.RouteHandler);
 module.exports.mixins = {
   State: Router.State,
   Navigation: Router.Navigation

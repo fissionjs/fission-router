@@ -2,23 +2,17 @@
 
 var React = require('react');
 var Router = require('../../');
-var ChildView = React.createFactory(Router.ChildView);
+var ChildView = Router.ChildView;
 
 var emptyReactComponent = function(name){
-  return React.createClass({
+  return React.createFactory(React.createClass({
     displayName: 'DummyComponent-' + name,
     mixins: [Router.mixins.State],
 
     render: function(){
-      var str = 'Test';
-      /*
-      if (this.getParams().jobId) {
-        str += this.getParams().jobId;
-      }
-      */
-      return React.DOM.div(null, str, ChildView());
+      return React.DOM.div(null, 'Test', ChildView());
     }
-  });
+  }));
 };
 
 module.exports = {
