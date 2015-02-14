@@ -7,10 +7,10 @@ var transformRoutes = require('./lib/transformRoutes');
 var renderRoute = require('./lib/renderRoute');
 
 module.exports = function(routeObj, opt){
-  var options = assign({}, opt, {
+  var options = assign({
     location: Router.HistoryLocation,
     expectFactory: true
-  });
+  }, opt);
 
   var router = Router.create({
     routes: transformRoutes(routeObj),
