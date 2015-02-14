@@ -28,11 +28,10 @@ module.exports = {
   home: {
     path: 'home',
     view: emptyReactComponent('home'),
+    default: {
+      view: emptyReactComponent('dashboard')
+    },
     children: {
-      dashboard: {
-        default: true,
-        view: emptyReactComponent('dashboard')
-      },
       stats: {
         path: 'analytics',
         view: emptyReactComponent('stats')
