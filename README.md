@@ -45,12 +45,18 @@ var appRouter = Router({
   home: {
     path: 'home',
     view: SomeReactComponent,
+
+    // Route = /home, this is activated when no other children are
+    defaultChild: {
+      view: SomeReactComponent
+    },
+
+    // Route = /home/asdf, this is activated when there is a child path segment
+    // but no children were activated
+    childNotFound: {
+      view: SomeReactComponent
+    },
     children: {
-      // Route = /home, this is a default subview of home with no path specified
-      dashboard: {
-        default: true,
-        view: SomeReactComponent
-      },
       // Route = /home/statistics, this is a subview of home
       stats: {
         path: 'statistics',
