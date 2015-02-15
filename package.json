@@ -1,7 +1,7 @@
 {
   "name": "fission-router",
   "description": "A declarative layer on top of react-router with some other nice-to-haves",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "http://github.com/fissionjs/fission-router",
   "repository": "git://github.com/fissionjs/fission-router.git",
   "author": "Fractal contact@wearefractal.com (http://wearefractal.com)",
