@@ -1,7 +1,9 @@
 'use strict';
 
 var should = require('should');
+var React = require('react');
 var clone = require('lodash.clone');
+var LocationActions = require('react-router/modules/actions/LocationActions');
 var router = require('../');
 var sampleRoutes = require('./fixtures/dashboardRoutes');
 
@@ -13,6 +15,7 @@ beforeEach(function(){
 
 afterEach(function(){
   if (this.router) {
+    this.router.clearAllRoutes();
     this.router.stop();
     delete this.router;
   }
@@ -80,6 +83,30 @@ describe('Router.start()', function() {
     done();
   });
 
+  it('should call willTransitionTo', function(done) {
+    var Component = React.createFactory(React.createClass({
+      render: function(){
+        return React.DOM.div(null, 'Test');
+      },
+      statics: {
+        willTransitionTo: function(t, cb) {
+          should.exist(t);
+          should.exist(cb);
+          done();
+        }
+      }
+    }));
+
+    this.router = router({
+      splash: {
+        path: '/',
+        view: Component
+      }
+    });
+    this.router.start(this.container);
+    this.router.dispatch('/', LocationActions.PUSH);
+  });
+
   it('should render a route from options object', function(done) {
     router.locations.History.history = ['/login'];
     this.router = router(this.routes, {location: router.locations.History});
@@ -97,8 +124,8 @@ describe('Router.start()', function() {
 
   it('should render a nested route', function(done) {
     this.router = router(this.routes);
-    this.router.replaceWith('/home/analytics');
     this.router.start(this.container);
+    this.router.dispatch('/home/analytics', LocationActions.PUSH);
 
     var firstContainerNode = this.container.childNodes[0];
     var firstTextNode = firstContainerNode.childNodes[0];
