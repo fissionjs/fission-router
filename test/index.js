@@ -3,7 +3,7 @@
 var should = require('should');
 var React = require('react');
 var clone = require('lodash.clone');
-var LocationActions = require('react-router/modules/actions/LocationActions');
+var LocationActions = require('react-router/lib/actions/LocationActions');
 var router = require('../');
 var sampleRoutes = require('./fixtures/dashboardRoutes');
 
@@ -84,7 +84,7 @@ describe('Router.start()', function() {
   });
 
   it('should call willTransitionTo', function(done) {
-    var Component = React.createFactory(React.createClass({
+    var Component = React.createClass({
       render: function(){
         return React.DOM.div(null, 'Test');
       },
@@ -95,7 +95,7 @@ describe('Router.start()', function() {
           done();
         }
       }
-    }));
+    });
 
     this.router = router({
       splash: {

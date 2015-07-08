@@ -5,14 +5,14 @@ var Router = require('../../');
 var ChildView = Router.ChildView;
 
 var emptyReactComponent = function(name){
-  return React.createFactory(React.createClass({
+  return React.createClass({
     displayName: 'DummyComponent-' + name,
     mixins: [Router.mixins.State],
 
     render: function(){
       return React.DOM.div(null, 'Test', ChildView());
     }
-  }));
+  });
 };
 
 module.exports = {
